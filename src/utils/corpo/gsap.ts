@@ -58,7 +58,7 @@ export function approachAnim() {
     trigger: step1,
     start: '0% 75%',
     end: '100% 75%',
-    markers: true,
+    markers: false,
     onEnter: () => {
       gsap.to(isText1, {
         opacity: 1,
@@ -127,7 +127,7 @@ export function approachAnim() {
     trigger: step2,
     start: '0% 75%',
     end: '15% 75%',
-    markers: true,
+    markers: false,
 
     onEnter: () => {
       gsap.to([elemRadar, elemBullet], {
@@ -199,7 +199,7 @@ export function approachAnim() {
     trigger: step3,
     start: '-25% 75%',
     end: '100% 75%',
-    markers: true,
+    markers: false,
     onEnter: () => {
       gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
       gsap.to(isText2, {
