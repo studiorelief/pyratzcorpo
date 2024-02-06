@@ -30,153 +30,136 @@ export function approachAnim() {
    ** Initialisation
    */
 
-  gsap.set([elemDarkEye, elemBase, elemGlossyEye, elemRadar, elemBullet, elemRocket, elemGrille], {
-    opacity: 0,
-  });
-
-  gsap.set([isText1, isText2, isText3, isText4], {
-    opacity: 0,
-  });
-
-  gsap.to(elemRadar, {
-    rotation: -360,
-    duration: 2,
-    ease: 'linear',
-    repeat: -1,
-  });
-
-  gsap.to(elemBullet, {
-    rotation: -360,
-    duration: 30,
-    ease: 'linear',
-    repeat: -1,
-  });
+  gsap.set(
+    [
+      elemDarkEye,
+      elemBase,
+      elemGlossyEye,
+      elemRadar,
+      elemBullet,
+      elemRocket,
+      elemGrille,
+      isText1,
+      isText2,
+      isText3,
+      isText4,
+    ],
+    {
+      opacity: 0,
+    }
+  );
 
   /**
    ** Step 1
+   *! En cours
    */
 
   ScrollTrigger.create({
     trigger: step1,
     start: '0% 75%',
     end: '100% 75%',
-    markers: false,
+    markers: true,
     onEnter: () => {
       gsap.to(isText1, {
         opacity: 1,
-      }),
-        gsap.to([elemBase, elemGrille, elemRadar, elemBullet], {
-          opacity: 1,
-        });
+      });
+      gsap.to([elemBase, elemGrille, elemRadar, elemBullet], {
+        opacity: 1,
+      });
+      gsap.to(elemRadar, {
+        rotation: -360,
+        duration: 2,
+        ease: 'linear',
+        repeat: -1,
+      });
+      gsap.to(elemBullet, {
+        rotation: -360,
+        duration: 30,
+        ease: 'linear',
+        repeat: -1,
+      });
     },
     onLeave: () => {
       gsap.to(isText1, {
         opacity: 0,
-      }),
-        gsap.to([elemRadar, elemBullet], {
-          opacity: 0,
-          duration: 0.5,
-        });
+      });
+      gsap.to([elemRadar, elemBullet], {
+        opacity: 0,
+        duration: 0.25,
+      });
+      gsap.killTweensOf([elemRadar, elemBullet], { rotation: true });
+      gsap.set([elemRadar, elemBullet], { rotation: 0 });
     },
     onEnterBack: () => {
       gsap.to(isText1, {
         opacity: 1,
-      }),
-        gsap.to([elemGrille, elemRadar, elemBullet], {
-          opacity: 1,
-          duration: 0.5,
-          scale: 1,
-        });
-      gsap.to(elemRocket, {
-        opacity: 0,
-        scale: 0,
-        duration: 0,
+      });
+      gsap.to([elemGrille, elemRadar, elemBullet], {
+        opacity: 1,
+        duration: 0.5,
+        scale: 1,
+      });
+      gsap.to(elemRadar, {
+        rotation: -360,
+        duration: 2,
+        ease: 'linear',
+        repeat: -1,
+      });
+      gsap.to(elemBullet, {
+        rotation: -360,
+        duration: 30,
+        ease: 'linear',
+        repeat: -1,
       });
     },
     onLeaveBack: () => {
-      gsap.to(isText1, {
-        opacity: 0,
-      }),
-        gsap.to([elemGrille, elemRadar, elemBullet], {
-          opacity: 1,
-          duration: 0.5,
-        });
+      gsap.killTweensOf([elemRadar, elemBullet], { rotation: true });
+      gsap.set([elemRadar, elemBullet], { rotation: 0 });
     },
   });
 
   /**
    ** Step 2
+   *! En cours
    */
 
   ScrollTrigger.create({
     trigger: step2,
     start: '0% 75%',
     end: '15% 75%',
-    markers: false,
+    markers: true,
 
     onEnter: () => {
-      gsap.to(isText2, {
-        opacity: 1,
-      }),
-        gsap.set(elemRocket, {
-          scale: 0,
-          opacity: 0,
-        }),
-        gsap.to(elemGrille, {
-          opacity: 1,
-          scale: 0.26,
-        });
-      gsap.to(elemRocket, {
-        opacity: 1,
-        scale: 0.2,
-      });
-    },
-    onEnterBack: () => {
-      gsap.to(isText2, {
-        opacity: 1,
-      }),
-        gsap.set(elemRocket, {
-          scale: 0.2,
-          opacity: 0,
-        }),
-        gsap.to(elemGrille, {
-          opacity: 1,
-          scale: 0.26,
-        });
-    },
-    onLeaveBack: () => {
-      gsap.to(isText2, {
+      gsap.to([elemRadar, elemBullet], {
         opacity: 0,
+        duration: 0.25,
+      });
+      gsap.to(isText2, {
+        opacity: 1,
+      });
+      gsap.to(elemGrille, {
+        opacity: 1,
+        scale: 0.26,
       });
       gsap.to(elemRocket, {
-        opacity: 0,
+        opacity: 1,
         scale: 0,
       });
+      gsap.to(elemRocket, {
+        opacity: 1,
+        scale: 0.5,
+      });
     },
-  });
-
-  let loopAnimation: GSAPAnimation | null = null; // Pour garder une référence à l'animation en boucle
-
-  ScrollTrigger.create({
-    trigger: step2,
-    start: '15% 75%',
-    end: '75% 75%',
-    markers: false,
-
-    onEnter: () => {
+    onLeave: () => {
       gsap.to(elemGrille, {
         opacity: 0,
         scale: 0,
       });
-      gsap.to(isText2, {
-        opacity: 1,
-      });
       gsap.to(elemRocket, {
-        opacity: 1,
         scale: 1,
         duration: 2,
         onComplete: () => {
-          loopAnimation = gsap.to(elemRocket, {
+          gsap.to(elemRocket, {
             scale: 1.1,
             duration: 1,
             repeat: -1,
@@ -186,28 +169,24 @@ export function approachAnim() {
       });
     },
     onEnterBack: () => {
-      gsap.to(isText2, {
-        opacity: 1,
-      });
-      if (loopAnimation) loopAnimation.kill();
+      gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
       gsap.to(elemRocket, {
         opacity: 1,
-        scale: 1,
-        duration: 1,
+        scale: 0.5,
       });
-    },
-    onLeave: () => {
-      if (loopAnimation) loopAnimation.kill();
-      gsap.to(isText2, {
-        opacity: 0,
+      gsap.to(elemGrille, {
+        opacity: 1,
+        scale: 0.26,
       });
     },
     onLeaveBack: () => {
-      if (loopAnimation) loopAnimation.kill();
+      gsap.to(isText2, {
+        opacity: 0,
+      });
       gsap.to(elemRocket, {
         opacity: 1,
-        scale: 0.2,
-        duration: 1,
+        scale: 0,
+        duration: 0.5,
       });
     },
   });
@@ -220,16 +199,17 @@ export function approachAnim() {
     trigger: step3,
     start: '-25% 75%',
     end: '100% 75%',
-    markers: false,
+    markers: true,
     onEnter: () => {
-      gsap.set(elemDarkEye, {
-        scale: 0.25,
+      gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
+      gsap.to(isText2, {
+        opacity: 0,
       });
       gsap.to(isText3, {
         opacity: 1,
       });
-      gsap.to(isText3, {
-        display: 'block',
+      gsap.set(elemDarkEye, {
+        scale: 0.25,
       });
       gsap.to(elemRocket, {
         opacity: 0,
@@ -245,14 +225,21 @@ export function approachAnim() {
         scale: 1,
         duration: 4,
         delay: 1,
-        overwrite: 'auto',
       });
       gsap.to(elemDarkEye, {
         rotation: 360,
         duration: 25,
         ease: 'linear',
         repeat: -1,
-        overwrite: 'auto',
+      });
+    },
+    onLeave: () => {
+      gsap.to(isText3, {
+        opacity: 0,
+      });
+      gsap.to(elemDarkEye, {
+        opacity: 0,
+        scale: 1,
       });
     },
     onEnterBack: () => {
@@ -271,27 +258,34 @@ export function approachAnim() {
         duration: 25,
         ease: 'linear',
         repeat: -1,
-        overwrite: 'auto',
-      });
-    },
-    onLeave: () => {
-      gsap.to(isText3, {
-        opacity: 0,
-      });
-      gsap.to(elemDarkEye, {
-        opacity: 0,
-        scale: 1,
-        overwrite: 'auto',
       });
     },
     onLeaveBack: () => {
+      gsap.to(isText2, {
+        opacity: 1,
+      });
       gsap.to(isText3, {
         opacity: 0,
       });
+      gsap.killTweensOf(elemDarkEye, { rotation: true, scale: true });
+
       gsap.to(elemDarkEye, {
         opacity: 0,
         scale: 0,
-        overwrite: 'auto',
+      });
+      gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
+
+      gsap.to(elemRocket, {
+        opacity: 1,
+        scale: 1,
+        onComplete: () => {
+          gsap.to(elemRocket, {
+            scale: 1.1,
+            duration: 1,
+            repeat: -1,
+            yoyo: true,
+          });
+        },
       });
     },
   });
@@ -306,13 +300,13 @@ export function approachAnim() {
     end: '100% 75%',
     markers: false,
     onEnter: () => {
+      gsap.to(isText4, {
+        opacity: 1,
+      });
       gsap.to(elemDarkEye, {
         opacity: 0,
         scale: 1,
         overwrite: true,
-      });
-      gsap.to(isText4, {
-        opacity: 1,
       });
       gsap.to(isText4, {
         display: 'block',
@@ -324,27 +318,27 @@ export function approachAnim() {
     onEnterBack: () => {
       gsap.to(isText4, {
         opacity: 1,
-      }),
-        gsap.to(elemGlossyEye, {
-          opacity: 1,
-          scale: 1,
-        });
+      });
+      gsap.to(elemGlossyEye, {
+        opacity: 1,
+        scale: 1,
+      });
     },
     onLeave: () => {
       gsap.to(isText4, {
         opacity: 0,
-      }),
-        gsap.to(elemGlossyEye, {
-          opacity: 0,
-        });
+      });
+      gsap.to(elemGlossyEye, {
+        opacity: 0,
+      });
     },
     onLeaveBack: () => {
       gsap.to(isText4, {
         opacity: 0,
-      }),
-        gsap.to(elemGlossyEye, {
-          opacity: 0,
-        });
+      });
+      gsap.to(elemGlossyEye, {
+        opacity: 0,
+      });
     },
   });
 }

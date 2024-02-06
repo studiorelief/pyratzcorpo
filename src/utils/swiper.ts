@@ -8,7 +8,7 @@ export function homeSwiper() {
   new Swiper('.swiper.is-home', {
     modules: [Navigation, Mousewheel, Keyboard],
     direction: 'horizontal',
-    grabCursor: true,
+    grabCursor: false,
     loop: true,
     slidesPerView: 'auto',
     spaceBetween: 24,
