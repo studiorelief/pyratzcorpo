@@ -118,6 +118,20 @@ export function approachAnim() {
     },
   });
 
+  ScrollTrigger.create({
+    trigger: step1,
+    start: '0% 75%',
+    end: '100% 75%',
+    scrub: true,
+    markers: false,
+    onUpdate: (self) => {
+      const { progress } = self;
+      gsap.to('.approach_process-line.is-step-1', {
+        width: progress * 100 + '%',
+      });
+    },
+  });
+
   /**
    ** Step 2
    *! En cours
@@ -147,7 +161,7 @@ export function approachAnim() {
       });
       gsap.to(elemRocket, {
         opacity: 1,
-        scale: 0.5,
+        scale: 0.25,
       });
     },
     onLeave: () => {
@@ -161,7 +175,8 @@ export function approachAnim() {
         onComplete: () => {
           gsap.to(elemRocket, {
             scale: 1.1,
-            duration: 1,
+            duration: 1.5,
+            ease: 'power1.inOut',
             repeat: -1,
             yoyo: true,
           });
@@ -172,7 +187,7 @@ export function approachAnim() {
       gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
       gsap.to(elemRocket, {
         opacity: 1,
-        scale: 0.5,
+        scale: 0.25,
       });
       gsap.to(elemGrille, {
         opacity: 1,
@@ -191,13 +206,42 @@ export function approachAnim() {
     },
   });
 
+  ScrollTrigger.create({
+    trigger: step2,
+    start: '2.5% 75%',
+    end: '100% 75%',
+    scrub: true,
+    markers: false,
+    onUpdate: (self) => {
+      const { progress } = self;
+      gsap.to('.approach_process-line.is-step-2', {
+        width: progress * 100 + '%',
+      });
+    },
+  });
+
+  /* ScrollTrigger.create({
+    trigger: step2,
+    start: '30% 75%',
+    end: '100% 75%',
+    scrub: true,
+    markers: true,
+    onUpdate: (self) => {
+      const { progress } = self;
+
+      gsap.to(elemDarkEye, {
+        opacity: progress,
+      });
+    },
+  }); */
+
   /**
    ** Step 3
    */
 
   ScrollTrigger.create({
     trigger: step3,
-    start: '-25% 75%',
+    start: '0% 75%',
     end: '100% 75%',
     markers: false,
     onEnter: () => {
@@ -210,6 +254,7 @@ export function approachAnim() {
       });
       gsap.set(elemDarkEye, {
         scale: 0.25,
+        opacity: 1,
       });
       gsap.to(elemRocket, {
         opacity: 0,
@@ -218,17 +263,13 @@ export function approachAnim() {
       });
       gsap.to(elemDarkEye, {
         opacity: 1,
-        scale: 0.25,
-      });
-      gsap.to(elemDarkEye, {
-        opacity: 1,
         scale: 1,
         duration: 4,
-        delay: 1,
+        delay: 0,
       });
       gsap.to(elemDarkEye, {
         rotation: 360,
-        duration: 25,
+        duration: 15,
         ease: 'linear',
         repeat: -1,
       });
@@ -290,6 +331,20 @@ export function approachAnim() {
     },
   });
 
+  ScrollTrigger.create({
+    trigger: step3,
+    start: '2.5% 75%',
+    end: '100% 75%',
+    scrub: true,
+    markers: false,
+    onUpdate: (self) => {
+      const { progress } = self;
+      gsap.to('.approach_process-line.is-step-3', {
+        width: progress * 100 + '%',
+      });
+    },
+  });
+
   /**
    ** Step 4
    */
@@ -338,6 +393,20 @@ export function approachAnim() {
       });
       gsap.to(elemGlossyEye, {
         opacity: 0,
+      });
+    },
+  });
+
+  ScrollTrigger.create({
+    trigger: step4,
+    start: '2.5% 75%',
+    end: '100% 75%',
+    scrub: true,
+    markers: false,
+    onUpdate: (self) => {
+      const { progress } = self;
+      gsap.to('.approach_process-line.is-step-4', {
+        width: progress * 100 + '%',
       });
     },
   });
