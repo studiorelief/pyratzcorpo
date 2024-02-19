@@ -8,23 +8,23 @@ export function approachAnim() {
    ** Éléments
    */
 
-  const step1: string = '.approach_step-percent.is-1';
-  const step2: string = '.approach_step-percent.is-2';
-  const step3: string = '.approach_step-percent.is-3';
-  const step4: string = '.approach_step-percent.is-4';
+  const step1: string = '.corpo-approach_step-percent.is-1';
+  const step2: string = '.corpo-approach_step-percent.is-2';
+  const step3: string = '.corpo-approach_step-percent.is-3';
+  const step4: string = '.corpo-approach_step-percent.is-4';
 
   const isText1: string = '.is-text-1';
   const isText2: string = '.is-text-2';
   const isText3: string = '.is-text-3';
   const isText4: string = '.is-text-4';
 
-  const elemDarkEye: string = '.approach_image.is-dark-eye';
-  const elemBase: string = '.approach_image.is-base';
-  const elemGlossyEye: string = '.approach_image.is-glossy-eye';
-  const elemRadar: string = '.approach_image.is-radar';
-  const elemBullet: string = '.approach_image.is-bullet';
-  const elemRocket: string = '.approach_image.is-rocket';
-  const elemGrille: string = '.approach_image.is-grille';
+  const elemDarkEye: string = '.corpo-approach_image.is-dark-eye';
+  const elemBase: string = '.corpo-approach_image.is-base';
+  const elemGlossyEye: string = '.corpo-approach_image.is-glossy-eye';
+  const elemRadar: string = '.corpo-approach_image.is-radar';
+  const elemBullet: string = '.corpo-approach_image.is-bullet';
+  const elemRocket: string = '.corpo-approach_image.is-rocket';
+  const elemGrille: string = '.corpo-approach_image.is-grille';
 
   /**
    ** Initialisation
@@ -126,7 +126,7 @@ export function approachAnim() {
     markers: false,
     onUpdate: (self) => {
       const { progress } = self;
-      gsap.to('.approach_process-line.is-step-1', {
+      gsap.to('.corpo-approach_process-line.is-step-1', {
         width: progress * 100 + '%',
       });
     },
@@ -214,7 +214,7 @@ export function approachAnim() {
     markers: false,
     onUpdate: (self) => {
       const { progress } = self;
-      gsap.to('.approach_process-line.is-step-2', {
+      gsap.to('.corpo-approach_process-line.is-step-2', {
         width: progress * 100 + '%',
       });
     },
@@ -339,7 +339,7 @@ export function approachAnim() {
     markers: false,
     onUpdate: (self) => {
       const { progress } = self;
-      gsap.to('.approach_process-line.is-step-3', {
+      gsap.to('.corpo-approach_process-line.is-step-3', {
         width: progress * 100 + '%',
       });
     },
@@ -381,7 +381,7 @@ export function approachAnim() {
     },
     onLeave: () => {
       gsap.to(isText4, {
-        opacity: 0,
+        opacity: 1,
       });
       gsap.to(elemGlossyEye, {
         opacity: 0,
@@ -405,7 +405,7 @@ export function approachAnim() {
     markers: false,
     onUpdate: (self) => {
       const { progress } = self;
-      gsap.to('.approach_process-line.is-step-4', {
+      gsap.to('.corpo-approach_process-line.is-step-4', {
         width: progress * 100 + '%',
       });
     },
