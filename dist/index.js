@@ -7069,6 +7069,10 @@
           }
         });
       });
+      const resizeObserver = new ResizeObserver(() => {
+        ScrollTrigger2.refresh();
+      });
+      resizeObserver.observe(document.body);
     }
   }
 

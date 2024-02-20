@@ -105,5 +105,11 @@ export function LaunchAnim() {
         },
       });
     });
+
+    // Observer pour détecter les changements dans le layout et rafraîchir les triggers
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    resizeObserver.observe(document.body);
   }
 }
