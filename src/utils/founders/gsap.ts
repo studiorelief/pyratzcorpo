@@ -63,13 +63,17 @@ export function LaunchAnim() {
       border: '1px solid rgba(255, 255, 255, 0)',
     });
 
-    document.querySelectorAll('.founders-launch_cards').forEach(function (cardLaunch) {
+    const cards = document.querySelectorAll('.founders-launch_cards');
+
+    cards.forEach((cardLaunch, index) => {
+      // Configuration initiale pour chaque carte
       gsap.timeline({
         scrollTrigger: {
           markers: false,
           trigger: cardLaunch,
-          start: '-25% 50%',
+          start: '0% 50%',
           end: '110% 50%',
+          toggleActions: 'play none none reverse',
           onEnter: () => {
             gsap.to(cardLaunch, {
               opacity: 1,
@@ -87,23 +91,52 @@ export function LaunchAnim() {
             });
           },
           onLeave: () => {
-            gsap.to(cardLaunch, {
-              opacity: 0.4,
-              scale: 0.9,
-              duration: 0.15,
-              border: '1px solid rgba(255, 255, 255, 0)',
-            });
+            // Appliquer un comportement différent pour la première carte
+            if (index === 2) {
+              gsap.to(cardLaunch, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.15,
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              });
+            } else {
+              gsap.to(cardLaunch, {
+                opacity: 0.4,
+                scale: 0.9,
+                duration: 0.15,
+                border: '1px solid rgba(255, 255, 255, 0)',
+              });
+            }
           },
           onLeaveBack: () => {
-            gsap.to(cardLaunch, {
-              opacity: 0.4,
-              scale: 0.9,
-              duration: 0.15,
-              border: '1px solid rgba(255, 255, 255, 0)',
-            });
+            // Appliquer un comportement différent pour la première carte
+            if (index === 0) {
+              gsap.to(cardLaunch, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.15,
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              });
+            } else {
+              gsap.to(cardLaunch, {
+                opacity: 0.4,
+                scale: 0.9,
+                duration: 0.15,
+                border: '1px solid rgba(255, 255, 255, 0)',
+              });
+            }
           },
         },
       });
+
+      // Condition spéciale pour la première carte
+      if (index === 0) {
+        gsap.set(cardLaunch, {
+          opacity: 1,
+          scale: 1,
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        });
+      }
     });
 
     // Observer pour détecter les changements dans le layout et rafraîchir les triggers
