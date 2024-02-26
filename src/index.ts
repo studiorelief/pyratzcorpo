@@ -13,8 +13,14 @@ window.Webflow.push(() => {
    */
 
   loadModelViewerScript();
-  homeSwiper();
-  approachAnim();
-  experienceAnim();
-  LaunchAnim();
+
+  if (window.location.pathname === '/') {
+    homeSwiper();
+    approachAnim();
+  }
+
+  if (window.location.pathname.includes('/founders')) {
+    experienceAnim();
+    LaunchAnim();
+  }
 });

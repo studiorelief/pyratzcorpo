@@ -13,11 +13,6 @@ export function approachAnim() {
   const step3: string = '.corpo-approach_step-percent.is-3';
   const step4: string = '.corpo-approach_step-percent.is-4';
 
-  const isText1: string = '.is-text-1';
-  const isText2: string = '.is-text-2';
-  const isText3: string = '.is-text-3';
-  const isText4: string = '.is-text-4';
-
   const elemDarkEye: string = '.corpo-approach_image.is-dark-eye';
   const elemBase: string = '.corpo-approach_image.is-base';
   const elemGlossyEye: string = '.corpo-approach_image.is-glossy-eye';
@@ -30,24 +25,14 @@ export function approachAnim() {
    ** Initialisation
    */
 
-  gsap.set(
-    [
-      elemDarkEye,
-      elemBase,
-      elemGlossyEye,
-      elemRadar,
-      elemBullet,
-      elemRocket,
-      elemGrille,
-      isText1,
-      isText2,
-      isText3,
-      isText4,
-    ],
-    {
-      opacity: 0,
-    }
-  );
+  gsap.set([elemDarkEye, elemBase, elemGlossyEye, elemRadar, elemBullet, elemRocket, elemGrille], {
+    opacity: 0,
+  });
+
+  gsap.set(elemRocket, {
+    opacity: 1,
+    scale: 0.25,
+  });
 
   /**
    ** Step 1
@@ -56,13 +41,10 @@ export function approachAnim() {
 
   ScrollTrigger.create({
     trigger: step1,
-    start: '0% 75%',
-    end: '100% 75%',
+    start: '-50% 75%',
+    end: '125% 75%',
     markers: false,
     onEnter: () => {
-      gsap.to(isText1, {
-        opacity: 1,
-      });
       gsap.to([elemBase, elemGrille, elemRadar, elemBullet], {
         opacity: 1,
       });
@@ -80,20 +62,18 @@ export function approachAnim() {
       });
     },
     onLeave: () => {
-      gsap.to(isText1, {
-        opacity: 0,
-      });
       gsap.to([elemRadar, elemBullet], {
         opacity: 0,
         duration: 0.25,
+      });
+      gsap.to(elemGrille, {
+        opacity: 1,
+        scale: 0.26,
       });
       gsap.killTweensOf([elemRadar, elemBullet], { rotation: true });
       gsap.set([elemRadar, elemBullet], { rotation: 0 });
     },
     onEnterBack: () => {
-      gsap.to(isText1, {
-        opacity: 1,
-      });
       gsap.to([elemGrille, elemRadar, elemBullet], {
         opacity: 1,
         duration: 0.5,
@@ -148,9 +128,6 @@ export function approachAnim() {
         opacity: 0,
         duration: 0.25,
       });
-      gsap.to(isText2, {
-        opacity: 1,
-      });
       gsap.to(elemGrille, {
         opacity: 1,
         scale: 0.26,
@@ -165,10 +142,10 @@ export function approachAnim() {
       });
     },
     onLeave: () => {
-      gsap.to(elemGrille, {
+      /* gsap.to(elemGrille, {
         opacity: 0,
         scale: 0,
-      });
+      }); */
       gsap.to(elemRocket, {
         scale: 1,
         duration: 2,
@@ -195,9 +172,6 @@ export function approachAnim() {
       });
     },
     onLeaveBack: () => {
-      gsap.to(isText2, {
-        opacity: 0,
-      });
       gsap.to(elemRocket, {
         opacity: 1,
         scale: 0,
@@ -242,16 +216,10 @@ export function approachAnim() {
   ScrollTrigger.create({
     trigger: step3,
     start: '0% 75%',
-    end: '100% 75%',
-    markers: false,
+    end: '125% 75%',
+    markers: true,
     onEnter: () => {
       gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
-      gsap.to(isText2, {
-        opacity: 0,
-      });
-      gsap.to(isText3, {
-        opacity: 1,
-      });
       gsap.set(elemDarkEye, {
         scale: 0.25,
         opacity: 1,
@@ -264,7 +232,7 @@ export function approachAnim() {
       gsap.to(elemDarkEye, {
         opacity: 1,
         scale: 1,
-        duration: 4,
+        duration: 2,
         delay: 0,
       });
       gsap.to(elemDarkEye, {
@@ -275,18 +243,12 @@ export function approachAnim() {
       });
     },
     onLeave: () => {
-      gsap.to(isText3, {
-        opacity: 0,
-      });
       gsap.to(elemDarkEye, {
         opacity: 0,
         scale: 1,
       });
     },
     onEnterBack: () => {
-      gsap.to(isText3, {
-        opacity: 1,
-      });
       gsap.to(elemDarkEye, {
         opacity: 1,
         scale: 1,
@@ -302,12 +264,6 @@ export function approachAnim() {
       });
     },
     onLeaveBack: () => {
-      gsap.to(isText2, {
-        opacity: 1,
-      });
-      gsap.to(isText3, {
-        opacity: 0,
-      });
       gsap.killTweensOf(elemDarkEye, { rotation: true, scale: true });
 
       gsap.to(elemDarkEye, {
@@ -352,45 +308,30 @@ export function approachAnim() {
   ScrollTrigger.create({
     trigger: step4,
     start: '0% 75%',
-    end: '100% 75%',
+    end: '150% 75%',
     markers: false,
     onEnter: () => {
-      gsap.to(isText4, {
-        opacity: 1,
-      });
       gsap.to(elemDarkEye, {
         opacity: 0,
         scale: 1,
         overwrite: true,
-      });
-      gsap.to(isText4, {
-        display: 'block',
       });
       gsap.to(elemGlossyEye, {
         opacity: 1,
       });
     },
     onEnterBack: () => {
-      gsap.to(isText4, {
-        opacity: 1,
-      });
       gsap.to(elemGlossyEye, {
         opacity: 1,
         scale: 1,
       });
     },
     onLeave: () => {
-      gsap.to(isText4, {
-        opacity: 1,
-      });
       gsap.to(elemGlossyEye, {
         opacity: 0,
       });
     },
     onLeaveBack: () => {
-      gsap.to(isText4, {
-        opacity: 0,
-      });
       gsap.to(elemGlossyEye, {
         opacity: 0,
       });
