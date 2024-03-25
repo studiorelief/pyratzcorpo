@@ -1,4 +1,4 @@
-function loadScript(src: string) {
+export function loadScript(src: string) {
   return new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
 
@@ -11,4 +11,11 @@ function loadScript(src: string) {
   });
 }
 
-export { loadScript };
+export function videoLoop() {
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      const videoElement = document.getElementById('videoLoop') as HTMLMediaElement;
+      videoElement.play();
+    }
+  });
+}
