@@ -217,7 +217,7 @@ export function approachAnim() {
     trigger: step3,
     start: '0% 75%',
     end: '125% 75%',
-    markers: true,
+    markers: false,
     onEnter: () => {
       gsap.killTweensOf(elemRocket, { scale: true, opacity: true });
       gsap.set(elemDarkEye, {
